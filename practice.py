@@ -12,6 +12,17 @@ def subtract_7_from_every_5th_starting_from_index(numbers, start_index):
         numbers[i] -= 7
     return numbers
 
+def sum_numbers_between_indices(numbers, start_index, end_index):
+    # Check if start_index and end_index are valid
+    if 0 <= start_index <= end_index < len(numbers):
+        # Use slicing to select the elements between the specified indices
+        selected_numbers = numbers[start_index:end_index+1]
+        
+        # Calculate and return the sum of the selected numbers
+        return sum(selected_numbers)
+    else:
+        return None  # Return None for invalid indices
+
 # Input the number of test cases
 T = int(input("Enter the number of test cases (1 <= T <= 25): "))
 
@@ -38,7 +49,7 @@ if 1 <= T <= 25:
                     print(f"Please enter exactly {L} numbers.")
             
             # Check if each number in the list is within the range -100 to 100
-            valid_numbers = all(-100 <= num <= 100 for num in numbers)
+            valid_numbers = all(-100 <= n <= 100 for n in numbers)
             
             if valid_numbers:
                 # Reverse the list of numbers
@@ -52,14 +63,20 @@ if 1 <= T <= 25:
                 modified_numbers = add_3_to_every_third_from_index(numbers, start_index)
                 
                 # Print the modified list
-                print("add_3_to_index_numbers_3:", *modified_numbers)
+                print("Modified list:", *modified_numbers)
                 
                 # Subtract 7 from every 5th number starting from a specific index (e.g., index 5)
                 start_index = 5
                 final_numbers = subtract_7_from_every_5th_starting_from_index(numbers, start_index)
                 
                 # Print the final modified list
-                print("subtract_7_from_index_numbers_5:", *final_numbers)
+                print("Final modified list:", *final_numbers)
+                
+                # Calculate the sum of numbers between indices 3 and 7 (inclusive)
+                start_index = 3
+                end_index = 7
+                sum_result = sum_numbers_between_indices(numbers, start_index, end_index)
+                print("Sum of numbers between indices 3 and 7 (inclusive):", sum_result)
             else:
                 print("Each number in the list must be between -100 and 100.")
         else:
